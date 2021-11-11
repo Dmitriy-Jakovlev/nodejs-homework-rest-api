@@ -1,10 +1,10 @@
 const { NotFound } = require('http-errors')
 
-const contactsOperations = require('../../model/contacts')
+const { Contact } = require('../../models')
 
-const updateById = async (req, res, next) => {
+const updateById = async (req, res) => {
   const { id } = req.params
-  const result = await contactsOperations.updateContact(id, req.body)
+  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true })
   if (!result) {
     throw new NotFound(`Contact with id=${id} not found`)
   }
