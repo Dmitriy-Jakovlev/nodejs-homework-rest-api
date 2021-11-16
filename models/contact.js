@@ -20,9 +20,9 @@ const contactSchema = Schema({
 
 const joiSchema = Joi.object({
   name: Joi.string().min(3).required(),
-  email: Joi.string().email({ minDomainSegments: 2 }),
-  phone: Joi.string().min(8),
-  favorite: Joi.boolean()
+  email: Joi.string().email({ minDomainSegments: 2 }).required,
+  phone: Joi.string().min(8).required,
+  favorite: Joi.boolean().required
 })
 
 const Contact = model('contact', contactSchema)
