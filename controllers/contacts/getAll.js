@@ -1,7 +1,15 @@
+const { BadRequest } = require('http-errors')
+
 const { Contact } = require('../../models')
 
 const getAll = async (req, res) => {
   const { page = 1, limit = 20 } = req.query
+  if (isNaN(page)) {
+    throw new BadRequest('not number')
+  }
+  if (isNaN(limit)) {
+    throw new BadRequest('not number')
+  }
   const { _id } = req.user
   const skip = (page - 1) * limit
   const result = await Contact.find(
