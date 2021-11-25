@@ -9,7 +9,7 @@ const register = async (req, res) => {
   if (user) {
     throw new Conflict(`User with email=${email} allready exist`)
   }
-  const avatarURL = gravatar.url(email, { s: '250' }, true)
+  const avatarURL = gravatar.url(email, { protocol: 'http', s: '250' })
   const newUser = new User({ email, avatarURL })
   newUser.setPassword(password)
   await newUser.save()
