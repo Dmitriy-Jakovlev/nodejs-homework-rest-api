@@ -15,4 +15,6 @@ router.get('/current', authenticate, controllerWrapper(ctrl.current))
 
 router.patch('/avatars', authenticate, upload.single('avatar'), controllerWrapper(ctrl.updateAvatar))
 
+router.get('/verify/:verificationToken', controllerWrapper(ctrl.verify))
+
 module.exports = router
